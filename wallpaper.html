@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>(re)wallpaper gallery</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg: #f0e6ff; 
+      --text: #1a1a1a;
+      --muted: #4b3c7a;
+      --card: rgba(255,255,255,0.8);
+      --accent: #6a4cff;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; }
+
+    body {
+      font-family: "Inter", "Poppins", system-ui, -apple-system, Arial, sans-serif;
+      color: var(--text);
+      background: linear-gradient(135deg, #f9f0ff 0%, #ece6ff 60%, #e9d7ff 100%), var(--bg);
+      background-attachment: fixed;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    h1 {
+      font-size: 38px;
+      font-weight: 700;
+      margin: 0;
+      letter-spacing: 0.4px;
+      color: var(--accent);  
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 14px;
+      margin-top: 8px;
+    }
+
+    .content {
+      width: min(1100px, 95%);
+      background: var(--card);
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .folders {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0 0;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    @media (min-width: 700px){
+      .folders {
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+    }
+
+    .folder {
+      border-radius: 12px;
+      padding: 12px 14px;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border: 1px solid #e6e0ff;
+      cursor: default;
+    }
+
+    .folder strong {
+      font-weight: 700;
+    }
+
+    .tab {
+      display: inline-block;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: #f6f3ff;
+      color: #2b2b2b;
+      text-decoration: none;
+      border: 1px solid #d9d0ff;
+      margin-left: 6px;
+      cursor: pointer;
+      transition: transform 0.05s ease-in-out;
+    }
+
+    .tab:hover { transform: translateY(-1px); }
+
+    .panel {
+      display: none;
+      margin-top: 12px;
+    }
+
+    .panel.active {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 12px;
+    }
+
+    .panel img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      cursor: pointer;
+      transition: transform 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+
+    .panel img:hover {
+      transform: scale(1.03);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+    }
+
+    footer {
+      margin-top: 18px;
+      font-size: 12px;
+      color: #6b5b9a;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>(re)wallpaper for community</h1>
+  </header>
+
+  <main class="content" aria-label="Wallpaper gallery">
+    <ul class="folders" aria-label="Folders">
+      <li class="folder">
+        <span>folder</span>
+        <span class="tab" data-target="realSir">wallpaper w/ original redacted</span>
+      </li>
+      <li class="folder">
+        <span>folder</span>
+        <span class="tab" data-target="jmike">wallpaper w/ j.mike pfp's</span>
+      </li>
+    </ul>
+
+    <section id="realSir" class="panel" aria-label="RealSir wallpapers">
+      <a href="banner-5.jpeg" target="_blank" rel="noopener">
+        <img src="banner-5.jpeg" alt="Banner 5">
+      </a>
+      <a href="banner-6.jpeg" target="_blank" rel="noopener">
+        <img src="banner-6.jpeg" alt="Banner 6">
+      </a>
+      <a href="banner-7.jpeg" target="_blank" rel="noopener">
+        <img src="banner-7.jpeg" alt="Banner 7">
+      </a>
+    </section>
+
+    <section id="jmike" class="panel" aria-label="J Mike wallpapers">
+      <a href="banner-1.jpeg" target="_blank" rel="noopener">
+        <img src="banner-1.jpeg" alt="Banner 1">
+      </a>
+      <a href="banner-2.jpeg" target="_blank" rel="noopener">
+        <img src="banner-2.jpeg" alt="Banner 2">
+      </a>
+      <a href="banner-3.jpeg" target="_blank" rel="noopener">
+        <img src="banner-3.jpeg" alt="Banner 3">
+      </a>
+      <a href="banner-4.jpeg" target="_blank" rel="noopener">
+        <img src="banner-4.jpeg" alt="Banner 4">
+      </a>
+    </section>
+  </main>
+
+  <footer>
+    © website made by realsir
+  </footer>
+
+  <script>
+    const tabs = document.querySelectorAll('.tab');
+    const panels = {
+      realSir: document.getElementById('realSir'),
+      jmike: document.getElementById('jmike')
+    };
+
+    panels.realSir.classList.add('active');
+    panels.jmike.classList.remove('active');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const target = tab.getAttribute('data-target');
+        Object.keys(panels).forEach(key => panels[key].classList.remove('active'));
+        panels[target].classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>
+
