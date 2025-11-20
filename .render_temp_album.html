@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Creators Desktop Icons</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background: #851798;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+    }
+    body {
+      min-height: 100vh;
+      min-width: 100vw;
+      box-sizing: border-box;
+      position: relative;
+    }
+    .desktop-icons {
+      position: absolute;
+      top: 38px;
+      left: 36px;
+      display: flex;
+      flex-direction: row;
+      align-items: flex-end;
+      gap: 54px;
+      z-index: 2;
+    }
+    .icon-block {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      user-select: none;
+      cursor: pointer;
+      transition: transform 0.14s;
+    }
+    .icon-block:hover {
+      transform: scale(1.08) translateY(-7px);
+      filter: brightness(1.08) drop-shadow(0 3px 14px #fff2);
+    }
+    .icon-img {
+      width: 78px;
+      height: 78px;
+      border-radius: 19px;
+      background: #bc63eb;
+      object-fit: cover;
+      box-shadow: 0 2px 12px #4a0b5c24;
+      margin-bottom: 10px;
+      transition: box-shadow 0.16s;
+      display: block;
+    }
+    .icon-label {
+      font-family: 'Montserrat', Arial, sans-serif;
+      color: #fff7ed;
+      font-size: 17px;
+      font-weight: bold;
+      text-shadow: 0 2px 14px #2b063055, 0 1px 10px #e0d8fc33;
+      margin-top: 0;
+      user-select: none;
+      text-align: center;
+      letter-spacing: 1px;
+    }
+    .modal-bg {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 99;
+      background: rgba(44,19,54, 0.86);
+      justify-content: center;
+      align-items: center;
+      cursor: zoom-out;
+      animation: fadein .3s;
+    }
+    .modal-bg.active {
+      display: flex;
+    }
+    .modal-img {
+      max-width: 96vw;
+      max-height: 94vh;
+      border: none;
+      border-radius: 0;
+      margin: 0;
+      box-shadow: none;
+      display: block;
+      background: none;
+      cursor: auto;
+      animation: fadeinscale .19s;
+    }
+    @keyframes fadeinscale {
+      from { opacity: 0; transform: scale(0.95);}
+      to { opacity: 1; transform: scale(1);}
+    }
+    @keyframes fadein {
+      from { opacity: 0;}
+      to { opacity: 1;}
+    }
+    @media (max-width: 700px) {
+      .desktop-icons {
+        top: 18px;
+        left: 8px;
+        gap: 17px;
+      }
+      .icon-img {
+        width: 48px;
+        height: 48px;
+        border-radius: 11px;
+      }
+      .icon-label {
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="desktop-icons">
+    <div class="icon-block" data-img="j.mike.png">
+      <img class="icon-img" src="j.mike.png" alt="j.mike.png">
+      <span class="icon-label">j.mike.png</span>
+    </div>
+    <div class="icon-block" data-img="pix.png">
+      <img class="icon-img" src="pix.png" alt="pix.png">
+      <span class="icon-label">pix.png</span>
+    </div>
+    <div class="icon-block" data-img="tuong.png">
+      <img class="icon-img" src="tuong.png" alt="tuong.png">
+      <span class="icon-label">tuong.png</span>
+    </div>
+  </div>
+  <div class="modal-bg" id="modalBg">
+    <img src="" id="modalImg" alt="large icon" class="modal-img">
+  </div>
+  <script>
+    const modalBg = document.getElementById('modalBg');
+    const modalImg = document.getElementById('modalImg');
+    document.querySelectorAll('.icon-block').forEach(block => {
+      block.addEventListener('click', () => {
+        modalImg.src = block.dataset.img;
+        modalImg.alt = block.querySelector('.icon-img').alt || '';
+        modalBg.classList.add('active');
+      });
+    });
+    modalBg.addEventListener('click', (e) => {
+      if(e.target === modalBg) modalBg.classList.remove('active');
+    });
+    document.addEventListener('keydown', (e) => {
+      if(e.key === "Escape") modalBg.classList.remove('active');
+    });
+  </script>
+</body>
+</html>
+<script>window.scrollTo(0, 0); setTimeout(function() { window.scrollTo(0, 0); },200)</script>
