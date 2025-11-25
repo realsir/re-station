@@ -276,6 +276,12 @@
   </div>
   <div class="desktop-icons-wrapper">
     <div class="icon-row">
+      <a class="icon" href="https://re-floppy-bird.vercel.app/" target="_blank" title="(re)bird">
+        <div class="icon-img-bg">
+          <img src="rebird.png" alt="(re)bird">
+        </div>
+        <span class="icon-label">(re)bird</span>
+      </a>
       <a class="icon" href="https://re-find-coin.vercel.app/" target="_blank" title="re-find-coin">
         <div class="icon-img-bg">
           <img src="findcoin.png" alt="re-find-coin">
@@ -367,7 +373,7 @@
 
     modalCloseBtn.addEventListener('click', () => {
       modalBg.classList.remove('active');
-      setTimeout(()=>{ modalIframe.src = ''; },180); // Очищаем src (необязательно)
+      setTimeout(()=>{ modalIframe.src = ''; },180);
     });
 
     modalBg.addEventListener('click', (event) => {
